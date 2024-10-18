@@ -6,7 +6,6 @@
 int main(int argc, char **argv, char **env){
 
     int i;
-    int a = 0;
     int clk;
 
     Verilated::commandArgs(argc, argv);
@@ -21,10 +20,21 @@ int main(int argc, char **argv, char **env){
 
     top->clk = 1;
     top->rst = 1;
-    top->en = 0;
     top->count;
+    top->v; //value to preload
+    top->ld;  //load counter from data
 
     for(i = 0; i < 600; i++){
+
+        vbdSetMode(1);
+        if(vbdFlag()){
+
+            top->ld = 1;
+        }
+        else{
+
+            top->ld = 0;
+        }
 
         for(clk = 0; clk < 2; clk++){
 
@@ -38,7 +48,7 @@ int main(int argc, char **argv, char **env){
         vbdCycle(i+1);
 
         top->rst = (i < 2) | (i == 15);
-        top->en = vbdFlag();
+        // top->en = vbdFlag();
 
         if(Verilated::gotFinish()){
             exit(0);

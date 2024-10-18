@@ -12,13 +12,11 @@ VL_INLINE_OPT void Vcounter___024root___sequent__TOP__0(Vcounter___024root* vlSe
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcounter___024root___sequent__TOP__0\n"); );
     // Body
     vlSelf->count = ((IData)(vlSelf->rst) ? 0U : (0xffU 
-                                                  & ((IData)(vlSelf->en)
-                                                      ? 
-                                                     ((IData)(1U) 
-                                                      + (IData)(vlSelf->count))
+                                                  & ((IData)(vlSelf->ld)
+                                                      ? (IData)(vlSelf->v)
                                                       : 
-                                                     ((IData)(vlSelf->count) 
-                                                      - (IData)(1U)))));
+                                                     ((IData)(1U) 
+                                                      + (IData)(vlSelf->count)))));
 }
 
 void Vcounter___024root___eval(Vcounter___024root* vlSelf) {
@@ -43,7 +41,7 @@ void Vcounter___024root___eval_debug_assertions(Vcounter___024root* vlSelf) {
         Verilated::overWidthError("clk");}
     if (VL_UNLIKELY((vlSelf->rst & 0xfeU))) {
         Verilated::overWidthError("rst");}
-    if (VL_UNLIKELY((vlSelf->en & 0xfeU))) {
-        Verilated::overWidthError("en");}
+    if (VL_UNLIKELY((vlSelf->ld & 0xfeU))) {
+        Verilated::overWidthError("ld");}
 }
 #endif  // VL_DEBUG
