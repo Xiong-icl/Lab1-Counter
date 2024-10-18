@@ -1,12 +1,12 @@
 Below is the testbench used for the counter modified to turn off EN for 3 cycles after counter reaches 0x9. EN is re-enabled after 3 cycles.
 
 `#include "Vcounter.h"
-`#include "verilated.h"
-`#include "verilated_vcd_c.h"
+#include "verilated.h"
+#include "verilated_vcd_c.h"`
 
-`int main(int argc, char **argv, char **env){
+`int main(int argc, char **argv, char **env){`
 
-    int i;
+    `int i;
     int a = 0;
     int clk;
     
@@ -22,9 +22,9 @@ Below is the testbench used for the counter modified to turn off EN for 3 cycles
     top->en = 0;
     top->count;
     
-    for(i = 0; i < 300; i++){
+    for(i = 0; i < 300; i++){`
         
-        //This function turns EN off for 3 cycles when the counter reaches 0x9, as shown by 'a' going from 0->3 in the loop
+        `//This function turns EN off for 3 cycles when the counter reaches 0x9, as shown by 'a' going from 0->3 in the loop
         if(top->count == 9){
             if(a < 3){
                 top->en = 0;
@@ -48,7 +48,7 @@ Below is the testbench used for the counter modified to turn off EN for 3 cycles
         }
     }
     tfp->close();
-    exit(0);
+    exit(0);`
 `}`
 #### Below is the explanation of the code without the new function
 
@@ -56,24 +56,24 @@ Below is the testbench used for the counter modified to turn off EN for 3 cycles
 `top->` accesses the SystemVerilog file to use the inputs in the testbench.
 
 #### The SystemVerilog file is as shown:
-`module counter #(
+`module counter #(`
 
-    parameter WIDTH = 8
+    `parameter WIDTH = 8`
 
 `)(`
 
-    input logic clk,
+`    input logic clk,
     input logic rst,
     input logic en,
     output logic [WIDTH-1:0] count
-`);`
+);`
 
 `always_ff @ (posedge clk)`
 `    if(rst) count <= {WIDTH{1'b0}};`
 `    else count <= count + {{WIDTH-1{1'b0}}, en};
 `
 `endmodule`
-``
+
 A new line is required for the SystemVerilog file to read because the new line allows the translation of the file to be complete. If the new line was not there, the program will not read the `endmodule` and not terminate the module.
 
 `always_ff` is a clockedge rising where if reset is detected, the count will return to `{WIDTH{1'b0}}` (or 0), else the count will continue to increase by `{WIDTH-1{1'b0}}` (or 1) whenever EN is on.
