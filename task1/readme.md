@@ -53,7 +53,7 @@ int main(int argc, char **argv, char **env){
 ```
 #### Below is the explanation of the code without the new function
 
-![Testbench](images/counter_tb.jpg)
+![Testbench](counter_tb.jpg)
 
 `top->` accesses the SystemVerilog file to use the inputs in the testbench.
 
