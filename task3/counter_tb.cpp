@@ -30,6 +30,7 @@ int main(int argc, char **argv, char **env){
         if(vbdFlag()){
 
             top->ld = 1;
+            top->v = top->count;
         }
         else{
 
