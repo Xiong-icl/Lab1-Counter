@@ -1,4 +1,4 @@
-##Task 2
+## Task 2
 By running the new commands to get the VBuddy name, we can modify the testbench to visualise the counter we created on the VBuddy directly.
 
 ```
